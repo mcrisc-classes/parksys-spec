@@ -457,7 +457,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#uc-config">2.9. Configurar Sistema</a></li>
 </ul>
 </li>
-<li><a href="#req-nf">3. Requisitos não-funcionais</a></li>
+<li><a href="#req-nf">3. Requisitos não-funcionais</a>
+<ul class="sectlevel2">
+<li><a href="#_arquitetura">3.1. Arquitetura</a></li>
+<li><a href="#_banco_de_dados">3.2. Banco de dados</a></li>
+<li><a href="#_interface">3.3. Interface</a></li>
+<li><a href="#_gráficos">3.4. Gráficos</a></li>
+<li><a href="#_repositório">3.5. Repositório</a></li>
+</ul>
+</li>
 <li><a href="#processo">4. Processo de desenvolvimento</a>
 <ul class="sectlevel2">
 <li><a href="#_equipe">4.1. Equipe</a></li>
@@ -1038,10 +1046,8 @@ O usuário poderá iniciar este caso de a qualquer momento, a partir da tela ini
 <div class="paragraph">
 <p>O sistema deverá atender aos seguintes requisitos não funcionais.</p>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Arquitetura</dt>
-<dd>
+<div class="sect2">
+<h3 id="_arquitetura"><a class="link" href="#_arquitetura">3.1. Arquitetura</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1054,11 +1060,14 @@ O usuário poderá iniciar este caso de a qualquer momento, a partir da tela ini
 <p>Camada de persistência deve propagar apenas um tipo de exceção.
 Não deve propagar exceções que fortaleçam o acoplamento da camada de negócios com a tecnologia de persistência&#8201;&#8212;&#8201;<code>SQLException</code>, por exemplo.</p>
 </li>
+<li>
+<p><mark>TODO</mark>: coesão e acoplamento - atenção às responsabilidades de cada componente</p>
+</li>
 </ul>
 </div>
-</dd>
-<dt class="hdlist1">Banco de dados</dt>
-<dd>
+</div>
+<div class="sect2">
+<h3 id="_banco_de_dados"><a class="link" href="#_banco_de_dados">3.2. Banco de dados</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1067,11 +1076,17 @@ Não deve propagar exceções que fortaleçam o acoplamento da camada de negóci
 <li>
 <p>Deve-se usar <em>transações</em>, para garantir a consistência de dados em operações que envolvam mais de uma tabela.</p>
 </li>
+<li>
+<p><mark>TODO</mark>: massa de dados</p>
+</li>
+<li>
+<p><mark>TODO</mark>: queries em um arquivo <code>queries.sql</code>.</p>
+</li>
 </ul>
 </div>
-</dd>
-<dt class="hdlist1">Interface</dt>
-<dd>
+</div>
+<div class="sect2">
+<h3 id="_interface"><a class="link" href="#_interface">3.3. Interface</a></h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1089,24 +1104,19 @@ Essas informações <em>não devem</em> ser solicitadas ao usuário.</p>
 </li>
 </ul>
 </div>
-</dd>
-<dt class="hdlist1">Gráficos</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
+</div>
+<div class="sect2">
+<h3 id="_gráficos"><a class="link" href="#_gráficos">3.4. Gráficos</a></h3>
+<div class="paragraph">
 <p>Use a biblioteca XChart (<a href="https://knowm.org/open-source/xchart/" class="bare">https://knowm.org/open-source/xchart/</a>) para gerar os gráficos.
 Veja os exemplos de uso dessa biblioteca no código inicial do projeto, dentro do pacote <code>parksys.graficos</code>.</p>
-</li>
-</ul>
 </div>
-</dd>
-<dt class="hdlist1">Repositório</dt>
-<dd>
-<div class="ulist">
-<ul>
-<li>
+</div>
+<div class="sect2">
+<h3 id="_repositório"><a class="link" href="#_repositório">3.5. Repositório</a></h3>
+<div class="paragraph">
 <p>Use o GitHub para:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
@@ -1117,11 +1127,6 @@ Veja os exemplos de uso dessa biblioteca no código inicial do projeto, dentro d
 </li>
 </ul>
 </div>
-</li>
-</ul>
-</div>
-</dd>
-</dl>
 </div>
 </div>
 </div>
@@ -1155,7 +1160,13 @@ Caso o problema não tenha sido corrigido, o testador devolverá o <em>issue</em
 </div>
 <div class="sect2">
 <h3 id="entregas-parciais"><a class="link" href="#entregas-parciais">4.3. Entregas parciais</a></h3>
-
+<div class="ulist">
+<ul>
+<li>
+<p><mark>TODO</mark>: entregas parciais, conforme calendário indicado no Moodle</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
@@ -1171,7 +1182,7 @@ Caso o problema não tenha sido corrigido, o testador devolverá o <em>issue</em
 <p>Cumprimento dos requisitos funcionais e não-funcionais.</p>
 </li>
 <li>
-<p>Aderência ao processo de trabalho, principalmente quanto ao <a href="#qa">Controle de Qualidade (QA)</a> e às <a href="#entregas-parciais">Entregas parciais</a>.</p>
+<p>Aderência ao processo de desenvolvimento, principalmente quanto ao <a href="#qa">Controle de Qualidade (QA)</a> e às <a href="#entregas-parciais">Entregas parciais</a>.</p>
 </li>
 </ul>
 </div>
@@ -1180,7 +1191,7 @@ Caso o problema não tenha sido corrigido, o testador devolverá o <em>issue</em
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-11-11 14:11:27 -0300
+Last updated 2021-11-11 16:52:29 -0300
 </div>
 </div>
 <script type="text/x-mathjax-config">
