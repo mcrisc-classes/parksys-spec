@@ -1054,14 +1054,16 @@ O usuário poderá iniciar este caso de a qualquer momento, a partir da tela ini
 <p>A arquitetura do ParkSys deve ser organizada em camadas.</p>
 </li>
 <li>
-<p>A camada de persistência deve ser implementada por meio do padrão DAO (<em>Data-Access Object</em>).</p>
+<p>A camada de persistência deve ser implementada por meio do padrão DAO (<em>Data-Access Object</em>).
+O uso do padrão DAO implica na definição de objetos de domínio&#8201;&#8212;&#8201;objetos que representem entidades como veículos, clientes, etc.</p>
 </li>
 <li>
-<p>Camada de persistência deve propagar apenas um tipo de exceção.
+<p>A camada de persistência deve propagar apenas um tipo de exceção.
 Não deve propagar exceções que fortaleçam o acoplamento da camada de negócios com a tecnologia de persistência&#8201;&#8212;&#8201;<code>SQLException</code>, por exemplo.</p>
 </li>
 <li>
-<p><mark>TODO</mark>: coesão e acoplamento - atenção às responsabilidades de cada componente</p>
+<p>Os componentes do software&#8201;&#8212;&#8201;classes e métodos&#8201;&#8212;&#8201;devem ser coesos e não devem acumular várias responsabilidades.
+Por exemplo: classe responsável por criar a tela de cadastro de clientes <em>não deve</em> acumular a responsabilidade de também acessar o banco de dados.</p>
 </li>
 </ul>
 </div>
@@ -1077,10 +1079,15 @@ Não deve propagar exceções que fortaleçam o acoplamento da camada de negóci
 <p>Deve-se usar <em>transações</em>, para garantir a consistência de dados em operações que envolvam mais de uma tabela.</p>
 </li>
 <li>
-<p><mark>TODO</mark>: massa de dados</p>
+<p>O sistema deve ser distribuído juntamente com uma massa de dados, que permita testar as consultas (<em>queries</em>).
+Isto é, deve haver um arquivo <code>data.sql</code>, dentro do diretório <code>resources</code>, que contenha dados de testes na forma de um conjunto de instruções <code>INSERT</code>.</p>
 </li>
 <li>
-<p><mark>TODO</mark>: queries em um arquivo <code>queries.sql</code>.</p>
+<p>As consultas usadas no sistema devem ser estar contidas no arquivo <code>resources/queries.sql</code>.
+Essa medida visa facilitar testes do projeto do banco de dados.</p>
+</li>
+<li>
+<p>As instruções para criação do banco de dados (DDL)&#8201;&#8212;&#8201;<code>CREATE TABLE</code>, <code>CREATE VIEW</code>, etc.&#8201;&#8212;&#8201;devem estar contidas no arquivo <code>resources/schema.sql</code>.</p>
 </li>
 </ul>
 </div>
@@ -1160,12 +1167,11 @@ Caso o problema não tenha sido corrigido, o testador devolverá o <em>issue</em
 </div>
 <div class="sect2">
 <h3 id="entregas-parciais"><a class="link" href="#entregas-parciais">4.3. Entregas parciais</a></h3>
-<div class="ulist">
-<ul>
-<li>
-<p><mark>TODO</mark>: entregas parciais, conforme calendário indicado no Moodle</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>O projeto deve ser desenvolvido de seguindo um <a href="https://blog.cronapp.io/desenvolvimento-iterativo-e-incremental/">processo iterativo e incremental</a>, com entregas parciais semanais.</p>
+</div>
+<div class="paragraph">
+<p>As entregas devem seguir o cronograma que será indicado no Moodle.</p>
 </div>
 </div>
 </div>
@@ -1191,7 +1197,7 @@ Caso o problema não tenha sido corrigido, o testador devolverá o <em>issue</em
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-11-11 16:52:29 -0300
+Last updated 2021-11-12 15:38:02 -0300
 </div>
 </div>
 <script type="text/x-mathjax-config">
