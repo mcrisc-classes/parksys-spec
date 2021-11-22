@@ -461,7 +461,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel2">
 <li><a href="#_arquitetura">3.1. Arquitetura</a></li>
 <li><a href="#_banco_de_dados">3.2. Banco de dados</a></li>
-<li><a href="#_interface">3.3. Interface</a></li>
+<li><a href="#rnf-ui">3.3. Interface</a></li>
 <li><a href="#_gráficos">3.4. Gráficos</a></li>
 <li><a href="#_repositório">3.5. Repositório</a></li>
 </ul>
@@ -1093,13 +1093,57 @@ Essa medida visa facilitar testes do projeto do banco de dados.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_interface"><a class="link" href="#_interface">3.3. Interface</a></h3>
+<h3 id="rnf-ui"><a class="link" href="#rnf-ui">3.3. Interface</a></h3>
 <div class="ulist">
 <ul>
 <li>
 <p>Eventos devem ser tratados por meio de <a href="https://www.tutorialspoint.com/how-to-implement-an-action-listener-using-method-reference-in-java">referências para métodos</a> ou <a href="https://www.codejava.net/java-core/the-java-language/java-8-lambda-listener-example">lambdas</a>.
-Não usar classes internas (<em>inner classes</em>).</p>
+Não use classes internas (<em>inner classes</em>).
+Também não implemente a interface <code>ActionListener</code> para usar a própria classe da janela como como <em>listener</em>&#8201;&#8212;&#8201;veja o exemplo a seguir.</p>
 </li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">Janela implementando interface ActionListener</div>
+<div class="content">
+<pre class="pygments highlight"><code data-lang="java"><table class="linenotable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><pre><span></span><span class="tok-c1">// Evite este padrão de tratamento de eventos</span>
+
+<span class="tok-kd">public</span> <span class="tok-kd">class</span> <span class="tok-nc">MinhaJanela</span> <span class="tok-kd">extends</span> <span class="tok-n">JFrame</span> <span class="tok-kd">implements</span> <span class="tok-n">ActionListener</span> <span class="tok-p">{</span>
+    <span class="tok-c1">// (...)</span>
+
+    <span class="tok-kd">public</span> <span class="tok-kt">void</span> <span class="tok-nf">actionPerformed</span><span class="tok-p">(</span><span class="tok-n">ActionEvent</span> <span class="tok-n">e</span><span class="tok-p">)</span> <span class="tok-p">{</span>
+        <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">e</span><span class="tok-p">.</span><span class="tok-na">getSource</span><span class="tok-p">()</span> <span class="tok-o">==</span> <span class="tok-n">botao1</span><span class="tok-p">)</span> <span class="tok-p">{</span>
+            <span class="tok-c1">// tratar evento do botão 1</span>
+
+        <span class="tok-p">}</span> <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">e</span><span class="tok-p">.</span><span class="tok-na">getSource</span><span class="tok-p">()</span> <span class="tok-o">==</span> <span class="tok-n">botao2</span><span class="tok-p">)</span> <span class="tok-p">{</span>
+            <span class="tok-c1">// tratar evento do botão 2</span>
+
+        <span class="tok-p">}</span> <span class="tok-k">else</span> <span class="tok-k">if</span> <span class="tok-p">(</span><span class="tok-n">e</span><span class="tok-p">.</span><span class="tok-na">getSource</span><span class="tok-p">()</span> <span class="tok-o">==</span> <span class="tok-n">botao3</span><span class="tok-p">)</span> <span class="tok-p">{</span>
+            <span class="tok-c1">// tratar evento do botão 3</span>
+        <span class="tok-p">}</span>
+    <span class="tok-p">}</span>
+<span class="tok-p">}</span>
+</pre></td></tr></table></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
 <li>
 <p>A interface apresentada na seção <a href="#overview">Visão Geral</a> é apenas uma sugestão.
 Você é livre para projetar uma interface para o sistema, desde que os requisitos sejam cumpridos.
@@ -1197,9 +1241,85 @@ Caso o problema não tenha sido corrigido, o testador devolverá o <em>issue</em
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-11-12 15:38:02 -0300
+Last updated 2021-11-22 18:05:08 -0300
 </div>
 </div>
+<style>
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+pre.pygments .hll { background-color: #ffffcc }
+pre.pygments { background: #f0f3f3; }
+pre.pygments .tok-c { color: #0099FF; font-style: italic } /* Comment */
+pre.pygments .tok-err { color: #AA0000; background-color: #FFAAAA } /* Error */
+pre.pygments .tok-k { color: #006699; font-weight: bold } /* Keyword */
+pre.pygments .tok-o { color: #555555 } /* Operator */
+pre.pygments .tok-ch { color: #0099FF; font-style: italic } /* Comment.Hashbang */
+pre.pygments .tok-cm { color: #0099FF; font-style: italic } /* Comment.Multiline */
+pre.pygments .tok-cp { color: #009999 } /* Comment.Preproc */
+pre.pygments .tok-cpf { color: #0099FF; font-style: italic } /* Comment.PreprocFile */
+pre.pygments .tok-c1 { color: #0099FF; font-style: italic } /* Comment.Single */
+pre.pygments .tok-cs { color: #0099FF; font-weight: bold; font-style: italic } /* Comment.Special */
+pre.pygments .tok-gd { background-color: #FFCCCC; border: 1px solid #CC0000 } /* Generic.Deleted */
+pre.pygments .tok-ge { font-style: italic } /* Generic.Emph */
+pre.pygments .tok-gr { color: #FF0000 } /* Generic.Error */
+pre.pygments .tok-gh { color: #003300; font-weight: bold } /* Generic.Heading */
+pre.pygments .tok-gi { background-color: #CCFFCC; border: 1px solid #00CC00 } /* Generic.Inserted */
+pre.pygments .tok-go { color: #AAAAAA } /* Generic.Output */
+pre.pygments .tok-gp { color: #000099; font-weight: bold } /* Generic.Prompt */
+pre.pygments .tok-gs { font-weight: bold } /* Generic.Strong */
+pre.pygments .tok-gu { color: #003300; font-weight: bold } /* Generic.Subheading */
+pre.pygments .tok-gt { color: #99CC66 } /* Generic.Traceback */
+pre.pygments .tok-kc { color: #006699; font-weight: bold } /* Keyword.Constant */
+pre.pygments .tok-kd { color: #006699; font-weight: bold } /* Keyword.Declaration */
+pre.pygments .tok-kn { color: #006699; font-weight: bold } /* Keyword.Namespace */
+pre.pygments .tok-kp { color: #006699 } /* Keyword.Pseudo */
+pre.pygments .tok-kr { color: #006699; font-weight: bold } /* Keyword.Reserved */
+pre.pygments .tok-kt { color: #007788; font-weight: bold } /* Keyword.Type */
+pre.pygments .tok-m { color: #FF6600 } /* Literal.Number */
+pre.pygments .tok-s { color: #CC3300 } /* Literal.String */
+pre.pygments .tok-na { color: #330099 } /* Name.Attribute */
+pre.pygments .tok-nb { color: #336666 } /* Name.Builtin */
+pre.pygments .tok-nc { color: #00AA88; font-weight: bold } /* Name.Class */
+pre.pygments .tok-no { color: #336600 } /* Name.Constant */
+pre.pygments .tok-nd { color: #9999FF } /* Name.Decorator */
+pre.pygments .tok-ni { color: #999999; font-weight: bold } /* Name.Entity */
+pre.pygments .tok-ne { color: #CC0000; font-weight: bold } /* Name.Exception */
+pre.pygments .tok-nf { color: #CC00FF } /* Name.Function */
+pre.pygments .tok-nl { color: #9999FF } /* Name.Label */
+pre.pygments .tok-nn { color: #00CCFF; font-weight: bold } /* Name.Namespace */
+pre.pygments .tok-nt { color: #330099; font-weight: bold } /* Name.Tag */
+pre.pygments .tok-nv { color: #003333 } /* Name.Variable */
+pre.pygments .tok-ow { color: #000000; font-weight: bold } /* Operator.Word */
+pre.pygments .tok-w { color: #bbbbbb } /* Text.Whitespace */
+pre.pygments .tok-mb { color: #FF6600 } /* Literal.Number.Bin */
+pre.pygments .tok-mf { color: #FF6600 } /* Literal.Number.Float */
+pre.pygments .tok-mh { color: #FF6600 } /* Literal.Number.Hex */
+pre.pygments .tok-mi { color: #FF6600 } /* Literal.Number.Integer */
+pre.pygments .tok-mo { color: #FF6600 } /* Literal.Number.Oct */
+pre.pygments .tok-sa { color: #CC3300 } /* Literal.String.Affix */
+pre.pygments .tok-sb { color: #CC3300 } /* Literal.String.Backtick */
+pre.pygments .tok-sc { color: #CC3300 } /* Literal.String.Char */
+pre.pygments .tok-dl { color: #CC3300 } /* Literal.String.Delimiter */
+pre.pygments .tok-sd { color: #CC3300; font-style: italic } /* Literal.String.Doc */
+pre.pygments .tok-s2 { color: #CC3300 } /* Literal.String.Double */
+pre.pygments .tok-se { color: #CC3300; font-weight: bold } /* Literal.String.Escape */
+pre.pygments .tok-sh { color: #CC3300 } /* Literal.String.Heredoc */
+pre.pygments .tok-si { color: #AA0000 } /* Literal.String.Interpol */
+pre.pygments .tok-sx { color: #CC3300 } /* Literal.String.Other */
+pre.pygments .tok-sr { color: #33AAAA } /* Literal.String.Regex */
+pre.pygments .tok-s1 { color: #CC3300 } /* Literal.String.Single */
+pre.pygments .tok-ss { color: #FFCC33 } /* Literal.String.Symbol */
+pre.pygments .tok-bp { color: #336666 } /* Name.Builtin.Pseudo */
+pre.pygments .tok-fm { color: #CC00FF } /* Name.Function.Magic */
+pre.pygments .tok-vc { color: #003333 } /* Name.Variable.Class */
+pre.pygments .tok-vg { color: #003333 } /* Name.Variable.Global */
+pre.pygments .tok-vi { color: #003333 } /* Name.Variable.Instance */
+pre.pygments .tok-vm { color: #003333 } /* Name.Variable.Magic */
+pre.pygments .tok-il { color: #FF6600 } /* Literal.Number.Integer.Long */
+</style>
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   messageStyle: "none",
